@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Sendo.vn BOT</title>
+        <meta charset="utf-8">
+        <link href="../assets/css/popup.css" rel="stylesheet">
+        <script src="../assets/js/popup.js"></script>
+    </head>
+
+    <body>
+        <div id="app">
+            <div class="head">
+                <img alt="Sendo.vn BOT" src="../assets/img/icon-38.png"/>
+                <p class="title">Sendo.vn BOT</p>
+                <p class="msg">{{message}}</p>
+            </div>
+
+            <table class="table table-sm info">
+                <tbody>
+                    <tr>
+                        <td colspan="2" class="date-time-now">
+                            <span class="date-time-now--time">
+                                <span class="date-time-now--hours">{{hoursNow}}</span>
+                                <span class="colons">:</span>
+                                <span class="date-time-now--minutes">{{minutesNow}}</span>
+                                <span class="colons">:</span>
+                                <span class="date-time-now--second">{{secondNow}}</span>
+                            </span>
+                            <span class="date-time-now--date">{{dateNow}}</span>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td nowrap>
+                            <label for="on_off">Bật/Tắt</label>
+                        </td>
+                        <td nowrap>
+                            <div class="on-off-extension">
+                                <input type="checkbox" id="on_off" class="is-enable" v-model="isEnable" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td nowrap>Tải lại các tab mua hàng</td>
+                        <td>
+                            <span class="icon-reload" v-bind:class="{disabled: !isEnable}">
+                                <i class="fa fa-refresh" aria-hidden="true"></i>
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td nowrap valign="middle">
+                            <label for="price_search">Giá tìm kiếm</label>
+                        </td>
+                        <td nowrap>
+                            <div class="input-group input-group-sm price-max-group">
+                                <input placeholder="" id="price_search" type="text"
+                                    class="form-control input-sm price-search"
+                                />
+                                <div class="input-group-append">
+                                    <span class="input-group-text">VND</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td nowrap valign="middle">
+                            <label for="price_max">Giá mua cao nhất</label>
+                        </td>
+                        <td nowrap>
+                            <div class="input-group input-group-sm price-max-group">
+                                <input placeholder="" id="price_max" type="text"
+                                    class="form-control input-sm price-max"
+                                />
+                                <div class="input-group-append">
+                                    <span class="input-group-text">VND</span>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Thời gian mua hàng kế tiếp</td>
+                        <td><div class="time-next-order" v-html="alarmTimeAutoOrder"></div></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label>Thời gian mua hàng</label>
+                        </td>
+                        <td>
+                            <div id="time-base">
+                                <div class="time">
+                                    <select class="form-control form-control-sm hours">
+                                        <option v-for="option in optionsHours" v-bind:value="option.value">
+                                            {{ option.text }}
+                                        </option>
+                                    </select>
+
+                                    <select class="form-control form-control-sm minutes">
+                                        <option v-for="option in optionsMinute" v-bind:value="option.value">
+                                            {{ option.text }}
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="icon">
+                                    <i class="fa fa-plus-circle add-row" aria-hidden="true"></i>
+                                    <i class="fa fa-minus-circle remove-row" aria-hidden="true"></i>
+                                </div>
+                            </div>
+
+                            <div class="row-time row-time--empty">
+                                <div class="icon">
+                                    <i class="fa fa-plus-circle add-row" aria-hidden="true"></i>
+                                    <i class="fa fa-minus-circle" aria-hidden="true"></i>
+                                </div>
+                            </div>
+
+                            <div class="list-time-auto"></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

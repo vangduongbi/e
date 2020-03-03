@@ -1,0 +1,8 @@
+{
+    "background": {
+        "scripts": [
+            "assets/js/background.js",
+            "assets/js/chrome-reload.js"
+        ]
+    }
+}
